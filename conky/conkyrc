@@ -1,0 +1,48 @@
+background        no
+out_to_console 	  yes
+out_to_x	  no
+update_interval	  2
+total_run_times	  0
+short_units	  yes
+pad_percents	  3
+max_text_width 0
+if_up_strictness address
+override_utf8_locale	no
+use_xft yes
+
+
+TEXT
+[
+	${if_up enu0s10}{"full_text" : " ${addr enp0s10} \u2193${downspeedf enp5s0}k \u2191${upspeedf enp4s0}k", "color" : "\#a6a6a6"}
+	${else}
+	${if_up wlp3s0}{"full_text" : " \u2193${downspeedf wlp3s0}k \u2191${upspeedf wlp3s0}k", "color" : "\#a6a6a6"},  
+    ${else}
+	${if_up enp0s6f1u2}{"full_text" : " \u2193${downspeedf enp0s6f1u2}k \u2191${upspeedf enp0s6flu2}k", "color" : "\#a6a6a6"}, 
+	${else}
+	{"full_text": "not connected","color":"\#E59847"},\
+	${endif}
+		
+  {"full_text":"ROOT: ${fs_used /}/${fs_size /}", "color":"\#35dd89"},
+	{"full_text": "HOME: ${fs_used /home/noslin}/${fs_size /home/noslin}", "color":"\#d1d1d1"},
+	{"full_text": "RAM: ${mem}/${memfree}", "color":"\#28a096"},
+		
+	
+  ${if_existing /sys/class/power_supply/ADPI1/online 0}
+  {"full_text": "","color":"\"859900","separator":false,"separator_block_width":6},\
+  {"full_text": "${if_match ${battery_percent BAT0}<20}   ${battery_percent BAT0}%","color":"\#dc322f"},\
+  {"full_text":"${else}"},\
+  {"full_text":"${if_match ${battery_percent BAT0}<50}   ${battery_percent BAT0}%","color":"\#b58900"},\
+  {"full_text":"${else}"},\
+  {"full_text":"${if_match ${battery_percent BAT0}==100}   ${battery_percent BAT0}%","color":"\#a6a6a6"},\
+  {"full_text":"${else}"},\
+  {"full_text":"${if_match ${battery_percent BAT0}>80}   ${battery_percent BAT0}%","color":"\#a6a6a6"},\
+  {"full_text":"${else}"},\
+  {"full_text":"${if_match ${battery_percent BAT0}>=50}   ${battery_percent BAT0}%","color":"\#a6a6a6"},\
+  {"full_text":"${else}"},\
+  {"full_text":"${endif}${endif}${endif}${endif}${endif}"},\
+	
+  {"full_text":" ${time %a, %b %d}", "color":"\#a6a6a6"},\
+    
+  {"full_text":" ${time %H:%M}", "color":"\#a6a6a6"}\
+
+],

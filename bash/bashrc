@@ -1,0 +1,15 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# Include commom resources
+
+COMMON_SH="$HOME/.dotfiles/bash/commom.sh"
+
+if [[ -f "$COMMON_SH" ]]; then
+    source "$COMMON_SH"
+fi
+
