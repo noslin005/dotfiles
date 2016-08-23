@@ -8,4 +8,4 @@ Machine: MacBook Pro 5,5 (mid 2009)
 
 ## Screenshot
 
-[i3 Desktop](http://i.imgur.com/DW1wWYm.png?1)
+![i3 Desktop](http://i.imgur.com/DW1wWYm.png?1)
