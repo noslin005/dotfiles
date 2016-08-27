@@ -20,13 +20,16 @@ URxvt.scrollBar: false
 URxvt.font: xft:Hack:pixelsize=12:antialias=true
 URxvt.boldFont: xft:Hack:style=Bold:pixelsize=12:antialias=true
 
-URxvt*transparent: true
-URxvt*shading: 30
-URxvt*fading: 50
+!URxvt*transparent: true
+!URxvt*shading: 30
+!URxvt*fading: 50
 
 
 ! clickable urls
-URxvt.perl-ext-common: default,matcher,selection-to-clipboard
+URxvt.perl-ext-common: ...,clipboard
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 URxvt.url-launcher: /usr/bin/firefox
 URxvt.matcher.button: 1
 

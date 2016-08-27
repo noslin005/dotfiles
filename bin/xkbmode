@@ -1,0 +1,42 @@
+#!/bin/bash
+#
+# (c) 2016 Nilson Lopes <noslin005@gmail.com>
+#
+# xkbmode <switch|get>
+#
+# xkbmode is a script that switch the keyboard layout
+# between US and PT on a MacBook Pro computer. 
+#
+# Version: 1.0
+# Last Update: Aug 25, 2016
+
+if [[ -z $1 ]]; then
+	echo "Usage: $0 <switch|get>"
+	exit 1
+fi
+
+MODEL="pc105"
+VARIANT="mac"
+CUR_LAYOUT=$(setxkbmap -query | grep "layout" | cut -d: -f2 | awk '{print $1}')
+
+case $1 in
+	"switch" )
+
+		if [[ $CUR_LAYOUT == "us" ]]; then
+		    LAYOUT="pt"
+		else
+		    LAYOUT="us"
+		fi
+
+		setxkbmap -model $MODEL -layout $LAYOUT -variant $VARIANT 2> /dev/null
+		;;
+
+	"get" )
+		echo $CUR_LAYOUT
+		;;
+	* )
+		echo "Usage: $0 <switch|get>"
+		exit 1
+esac
+
+exit 0

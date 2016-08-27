@@ -13,18 +13,16 @@ use_xft yes
 
 TEXT
 [
-	${if_up enu0s10}{"full_text" : " ${addr enp0s10} \u2193${downspeedf enp5s0}k \u2191${upspeedf enp4s0}k", "color" : "\#a6a6a6"}
+	${if_up enu0s10}{"full_text" : " ${addr enp0s10} \u2193${downspeedf enp0s1}k \u2191${upspeedf enp0s1}k", "color" : "\#a6a6a6"}
 	${else}
 	${if_up wlp3s0}{"full_text" : " \u2193${downspeedf wlp3s0}k \u2191${upspeedf wlp3s0}k", "color" : "\#a6a6a6"},  
     ${else}
-	${if_up enp0s6f1u2}{"full_text" : " \u2193${downspeedf enp0s6f1u2}k \u2191${upspeedf enp0s6flu2}k", "color" : "\#a6a6a6"}, 
-	${else}
 	{"full_text": "not connected","color":"\#E59847"},\
 	${endif}
 		
   {"full_text":"ROOT: ${fs_used /}/${fs_size /}", "color":"\#35dd89"},
 	{"full_text": "HOME: ${fs_used /home/noslin}/${fs_size /home/noslin}", "color":"\#d1d1d1"},
-	{"full_text": "RAM: ${mem}/${memfree}", "color":"\#28a096"},
+	{"full_text": "RAM: ${mem}/${memmax}", "color":"\#28a096"},
 		
 	
   ${if_existing /sys/class/power_supply/ADPI1/online 0}
@@ -40,6 +38,8 @@ TEXT
   {"full_text":"${if_match ${battery_percent BAT0}>=50}   ${battery_percent BAT0}%","color":"\#a6a6a6"},\
   {"full_text":"${else}"},\
   {"full_text":"${endif}${endif}${endif}${endif}${endif}"},\
+
+  {"full_text":" ${exec /home/noslin/bin/xkbmode get}", "color":"\#a6a6a6"},\
 	
   {"full_text":" ${time %a, %b %d}", "color":"\#a6a6a6"},\
     
